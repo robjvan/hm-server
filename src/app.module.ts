@@ -13,22 +13,24 @@ import { JewelleryModule } from './modules/assets/jewellery/jewellery.module';
 import { VideosModule } from './modules/assets/videos/videos.module';
 import { LocationsModule } from './modules/locations/locations.module';
 import { EventsModule } from './modules/events/events.module';
+import { DatabaseModule } from './modules/database/database.module';
 
 @Module({
   imports: [
     AuthModule,
     AdminModule,
-    UsersModule,
-    BooksModule,
-    MusicModule,
-    VehiclesModule,
-    ElectronicsModule,
     AppliancesModule,
+    BooksModule,
     ClothesModule,
-    JewelleryModule,
-    VideosModule,
-    LocationsModule,
+    DatabaseModule,
+    ElectronicsModule,
     EventsModule,
+    JewelleryModule,
+    LocationsModule,
+    MusicModule,
+    UsersModule,
+    VehiclesModule,
+    VideosModule,
   ],
   controllers: [AppController],
   providers: [],
