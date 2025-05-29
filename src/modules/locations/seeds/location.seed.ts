@@ -16,6 +16,7 @@ export const BuildLocationModelSeedData = async (): Promise<
         regionId: 1,
         address: '4A Pinewood Ave',
         postalCode: 'A2B1G2',
+        userId: 1,
       },
     },
   ];
