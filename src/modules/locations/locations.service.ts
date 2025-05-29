@@ -47,7 +47,7 @@ export class LocationsService {
 
   private async fetchRecordById(key: string, id: number): Promise<any> {
     try {
-      const repo = this.repoMap['key'];
+      const repo = this.repoMap[key];
 
       const result = await repo.findOne({ where: { id } });
 
@@ -76,6 +76,7 @@ export class LocationsService {
       if (!result) {
         throw new NotFoundException();
       }
+      console.log(await this.cityRepo.findAll());
 
       if (result.cityId)
         city = await this.fetchRecordById('city', result.cityId);
