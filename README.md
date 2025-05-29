@@ -3,8 +3,7 @@
 ## Features
 
 - Uses NAFP stack - NestJS, Angular/Flutter, PostgreSQL
-- Uses RxJS and signals for reactive UI
-- Hosted on coolify with automatic build/deployment
+- Hosted on Coolify with automatic build/deployment
 - Image storage buckets, authentication, notifications handled by AppWrite
 
 ## Developer Information
@@ -16,21 +15,11 @@ Built with NestJS v10.4.9, NodeJS 22.16.0, and npm 10.9.2
 Install VS Code with following extensions:
 
 - Better comments
-- Color Highlight
 - ESLint
 - gitignore
-- Image preview
 - Prettier
 - Todo Tree
 
-Extra suggested extensions for unified experience:
-
-- Atom One Dark
-- change-case
-- Markdown Preview Enhanced
-- markdownlint
-- Material Icon Theme
-- VS Color Picker
-- vscode-faker
-
 ### Deploying to Coolify
+
+Coolify should detect merges to `master` branch through webhooks and automatically build/push new releases.
