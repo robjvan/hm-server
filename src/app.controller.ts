@@ -1,12 +1,17 @@
 import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @Controller()
+@ApiTags('App')
 export class AppController {
-  constructor(private readonly appService: AppService) {}
-
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @ApiOperation({ summary: 'Checks for live connection to server' })
+  @ApiResponse({
+    description: 'Successfully pinged the server',
+    status: 200,
+    example: 'pong',
+  })
+  ping(): string {
+    return 'pong';
   }
 }
