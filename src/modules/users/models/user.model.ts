@@ -16,6 +16,12 @@ export class UserModel extends Model<UserModel> {
   })
   username: string;
 
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: false,
+  })
+  roleId: number;
+
   public static async seed() {
     const seedData: UserModelSeedData[] = await BuildUserModelSeedData();
 
