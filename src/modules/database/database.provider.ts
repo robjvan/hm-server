@@ -79,7 +79,7 @@ export const databaseProviders = [
           // logger.log('SeedDB = ' + seedDB);
 
           // // Seed sample location data
-          // logger.verbose('Seeding sample location data...');
+          logger.verbose('Seeding sample location data...');
           await safeSeed('Cities', CityModel.seed);
           await safeSeed('Countries', CountryModel.seed);
           await safeSeed('Regions', RegionModel.seed);
