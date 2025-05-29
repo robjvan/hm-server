@@ -17,6 +17,12 @@ export class UserModel extends Model<UserModel> {
   username: string;
 
   @Column({
+    type: DataType.TEXT,
+    allowNull: false,
+  })
+  password: string;
+
+  @Column({
     type: DataType.INTEGER,
     allowNull: false,
   })
