@@ -25,10 +25,10 @@ export class LocationModel extends Model<LocationModel> {
   id?: number;
 
   @ForeignKey(() => UserModel)
-  @Column(DataType.INTEGER)
+  @Column({ type: DataType.INTEGER, allowNull: false })
   userId: number;
 
-  @Column(DataType.TEXT)
+  @Column({ type: DataType.TEXT, allowNull: false })
   name: string;
 
   @Column(DataType.TEXT)
