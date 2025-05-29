@@ -3,6 +3,7 @@ import {
   Injectable,
   InternalServerErrorException,
   Logger,
+  NotFoundException,
 } from '@nestjs/common';
 import { CityModel } from './models/city.model';
 import { CountryModel } from './models/country.model';
@@ -35,5 +36,62 @@ export class LocationsService {
   private handleError(error: string, errorMsg: string) {
     this.logger.error(error, errorMsg);
     throw new InternalServerErrorException(error, errorMsg);
+  }
+
+  private repoMap = {
+    location: this.locationRepo,
+    country: this.countryRepo,
+    city: this.cityRepo,
+    region: this.regionRepo,
+  };
+
+  private async fetchRecordById(key: string, id: number): Promise<any> {
+    try {
+      const repo = this.repoMap['key'];
+
+      const result = await repo.findOne({ where: { id } });
+
+      if (!result) {
+        throw new NotFoundException(
+          `${key} record with id ${id} does not exist`,
+        );
+      }
+
+      return result;
+    } catch (err: any) {
+      this.handleError(
+        `Failed to fetch ${key} record with id ${id}`,
+        err.message,
+      );
+    }
+  }
+
+  public getMetrics() {}
+
+  public async fetchOneByUserId(userId: number) {
+    try {
+      let city: string, country: string, region: string;
+      const result = await this.locationRepo.findOne({ where: { userId } });
+
+      if (!result) {
+        throw new NotFoundException();
+      }
+
+      if (result.cityId)
+        city = await this.fetchRecordById('city', result.cityId);
+
+      if (result.countryId)
+        country = await this.fetchRecordById('country', result.countryId);
+
+      if (result.regionId)
+        region = await this.fetchRecordById('region', result.regionId);
+
+      return { ...result, city, country, region };
+    } catch (err: any) {
+      this.handleError(
+        `Failed to fetch location record for userId ${userId}`,
+        err.message,
+      );
+    }
   }
 }
