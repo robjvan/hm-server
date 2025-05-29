@@ -13,6 +13,7 @@ export class UserModel extends Model<UserModel> {
   @Column({
     type: DataType.TEXT,
     allowNull: false,
+    unique: true,
   })
   username: string;
 
@@ -24,9 +25,45 @@ export class UserModel extends Model<UserModel> {
 
   @Column({
     type: DataType.INTEGER,
-    allowNull: false,
+    defaultValue: 1,
   })
   roleId: number;
+
+  @Column({
+    type: DataType.BOOLEAN,
+    defaultValue: true,
+  })
+  active: boolean;
+
+  @Column({
+    type: DataType.BOOLEAN,
+    defaultValue: false,
+  })
+  newsletter: boolean;
+
+  @Column({
+    type: DataType.BOOLEAN,
+    defaultValue: false,
+  })
+  haveReviewed: boolean;
+
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: false,
+  })
+  smsToken: number;
+
+  @Column({
+    type: DataType.TEXT,
+    allowNull: false,
+  })
+  emailToken: string;
+
+  @Column({
+    type: DataType.BOOLEAN,
+    defaultValue: false,
+  })
+  emailConfirmed: boolean;
 
   public static async seed() {
     const seedData: UserModelSeedData[] = await BuildUserModelSeedData();
