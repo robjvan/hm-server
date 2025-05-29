@@ -4,6 +4,11 @@ import { Logger } from '@nestjs/common';
 import { devConfig, prodConfig, testConfig } from './database.config';
 import { DEVELOPMENT, PRODUCTION, SEQUELIZE, TEST } from 'src/constants';
 import { UserModel } from '../users/models/user.model';
+import { LocationModel } from '../locations/models/location.model';
+import { CityModel } from '../locations/models/city.model';
+import { CountryModel } from '../locations/models/country.model';
+import { RegionModel } from '../locations/models/region.model';
+import { EventModel } from '../events/models/event.model';
 
 dotenv.config();
 
@@ -34,6 +39,11 @@ export const databaseProviders = [
       // Add database models to the Sequelize instance
       sequelize.addModels([
         //! Add db models here
+        CityModel,
+        EventModel,
+        CountryModel,
+        LocationModel,
+        RegionModel,
         UserModel,
         // UserLoginRecordModel,
       ]);
@@ -68,8 +78,10 @@ export const databaseProviders = [
 
           // // Seed sample location data
           // logger.verbose('Seeding sample location data...');
-          // await safeSeed('Cities', CityModel.seed);
-          // await safeSeed('Countries', CountryModel.seed);
+          await safeSeed('Cities', CityModel.seed);
+          await safeSeed('Countries', CountryModel.seed);
+          await safeSeed('Regions', RegionModel.seed);
+          await safeSeed('Locations', LocationModel.seed);
 
           // Seed sample user data
           logger.verbose('Seeding sample user data...');
@@ -79,6 +91,7 @@ export const databaseProviders = [
           // await safeSeed('UserSubscriptions', UserSubscriptionModel.seed);
           // await safeSeed('UserProfiles', UserProfileModel.seed);
 
+          await safeSeed('Events', EventModel.seed);
           logger.verbose('Seeding done!');
         } catch (err) {
           console.error('Error seeding database', err);
