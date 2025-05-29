@@ -58,7 +58,7 @@ export const databaseProviders = [
         ...args: any[]
       ): any => {
         try {
-          logger.debug(`Seeding ${type}`);
+          logger.log(`Seeding ${type}`);
           return fn(...args);
         } catch (error) {
           console.error(`Error seeding ${type}`, error);
