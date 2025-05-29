@@ -19,8 +19,8 @@ async function bootstrap() {
 
   // Set Swagger configuration
   const config = new DocumentBuilder()
-    .setTitle('LeafAlert Platform')
-    .setDescription('LeafAlert platform API description')
+    .setTitle('Home Manager Platform')
+    .setDescription('Home Manager API description')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
