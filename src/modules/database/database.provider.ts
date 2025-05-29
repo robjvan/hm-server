@@ -9,6 +9,7 @@ import { CityModel } from '../locations/models/city.model';
 import { CountryModel } from '../locations/models/country.model';
 import { RegionModel } from '../locations/models/region.model';
 import { EventModel } from '../events/models/event.model';
+import { UserRoleModel } from '../users/models/user-role.model';
 
 dotenv.config();
 
@@ -45,6 +46,7 @@ export const databaseProviders = [
         LocationModel,
         RegionModel,
         UserModel,
+        UserRoleModel,
         // UserLoginRecordModel,
       ]);
 
@@ -86,7 +88,7 @@ export const databaseProviders = [
           // Seed sample user data
           logger.verbose('Seeding sample user data...');
           // await safeSeed('UserPlatforms', UserPlatformModel.seed);
-          // await safeSeed('UserRoles', UserRoleModel.seed);
+          await safeSeed('UserRoles', UserRoleModel.seed);
           await safeSeed('Users', UserModel.seed);
           // await safeSeed('UserSubscriptions', UserSubscriptionModel.seed);
           // await safeSeed('UserProfiles', UserProfileModel.seed);
