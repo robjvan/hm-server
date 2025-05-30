@@ -1,29 +1,35 @@
 import {
   CITY_REPOSITORY,
   COUNTRY_REPOSITORY,
+  DATA_SOURCE,
   LOCATION_REPOSITORY,
   REGION_REPOSITORY,
 } from 'src/constants';
-import { CityModel } from './models/city.model';
-import { CountryModel } from './models/country.model';
-import { RegionModel } from './models/region.model';
-import { LocationModel } from './models/location.model';
+import { City } from 'src/entities/city.entity';
+import { Country } from 'src/entities/country.entity';
+import { Region } from 'src/entities/region.entity';
+import { Location } from 'src/entities/location.entity';
+import { DataSource } from 'typeorm';
 
 export const locationsProviders = [
   {
     provide: CITY_REPOSITORY,
-    useValue: CityModel,
+    useFactory: (dataSource: DataSource) => dataSource.getRepository(City),
+    inject: [DATA_SOURCE],
   },
   {
     provide: COUNTRY_REPOSITORY,
-    useValue: CountryModel,
+    useFactory: (dataSource: DataSource) => dataSource.getRepository(Country),
+    inject: [DATA_SOURCE],
   },
   {
     provide: REGION_REPOSITORY,
-    useValue: RegionModel,
+    useFactory: (dataSource: DataSource) => dataSource.getRepository(Region),
+    inject: [DATA_SOURCE],
   },
   {
     provide: LOCATION_REPOSITORY,
-    useValue: LocationModel,
+    useFactory: (dataSource: DataSource) => dataSource.getRepository(Location),
+    inject: [DATA_SOURCE],
   },
 ];

@@ -1,18 +1,20 @@
 import {
   Inject,
+  // Inject,
   Injectable,
   InternalServerErrorException,
   Logger,
   NotFoundException,
 } from '@nestjs/common';
 import { USER_REPOSITORY } from 'src/constants';
-import { UserModel } from './models/user.model';
+import { User } from 'src/entities/user.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class UsersService {
   constructor(
     @Inject(USER_REPOSITORY)
-    private readonly usersRepo: typeof UserModel,
+    private usersRepo: Repository<User>,
   ) {}
 
   /** Logger instance scoped to UsersService for tracking and recording service-level operations and errors. */
@@ -24,7 +26,7 @@ export class UsersService {
     throw new InternalServerErrorException(error, errorMsg);
   }
 
-  public async fetchUserByUsername(username: string): Promise<UserModel> {
+  public async fetchUserByUsername(username: string): Promise<any> {
     try {
       const result = await this.usersRepo.findOne({ where: { username } });
 

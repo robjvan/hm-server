@@ -5,6 +5,7 @@ export const TEST = 'test';
 export const PRODUCTION = 'production';
 
 // Repository constants
+export const DATA_SOURCE = 'DATA_SOURCE';
 export const CITY_REPOSITORY = 'CITY_REPOSITORY';
 export const COUNTRY_REPOSITORY = 'COUNTRY_REPOSITORY';
 export const EVENTS_REPOSITORY = 'EVENTS_REPOSITORY';

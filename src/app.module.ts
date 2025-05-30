@@ -13,16 +13,22 @@ import { JewelleryModule } from './modules/assets/jewellery/jewellery.module';
 import { VideosModule } from './modules/assets/videos/videos.module';
 import { LocationsModule } from './modules/locations/locations.module';
 import { EventsModule } from './modules/events/events.module';
+// import { DatabaseModule } from './modules/database/database.module';
+
+import * as dotenv from 'dotenv';
 import { DatabaseModule } from './modules/database/database.module';
+
+dotenv.config();
 
 @Module({
   imports: [
+    DatabaseModule,
     AuthModule,
     AdminModule,
     AppliancesModule,
     BooksModule,
     ClothesModule,
-    DatabaseModule,
+    // DatabaseModule,
     ElectronicsModule,
     EventsModule,
     JewelleryModule,

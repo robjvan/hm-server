@@ -5,28 +5,29 @@ import {
   Logger,
   NotFoundException,
 } from '@nestjs/common';
-import { CityModel } from './models/city.model';
-import { CountryModel } from './models/country.model';
-import { RegionModel } from './models/region.model';
 import {
   CITY_REPOSITORY,
   COUNTRY_REPOSITORY,
   LOCATION_REPOSITORY,
   REGION_REPOSITORY,
 } from 'src/constants';
-import { LocationModel } from './models/location.model';
+import { City } from 'src/entities/city.entity';
+import { Country } from 'src/entities/country.entity';
+import { Location } from 'src/entities/location.entity';
+import { Region } from 'src/entities/region.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class LocationsService {
   constructor(
     @Inject(CITY_REPOSITORY)
-    private readonly cityRepo: typeof CityModel,
+    private cityRepo: Repository<City>,
     @Inject(COUNTRY_REPOSITORY)
-    private readonly countryRepo: typeof CountryModel,
+    private countryRepo: Repository<Country>,
     @Inject(REGION_REPOSITORY)
-    private readonly regionRepo: typeof RegionModel,
+    private regionRepo: Repository<Region>,
     @Inject(LOCATION_REPOSITORY)
-    private readonly locationRepo: typeof LocationModel,
+    private locationRepo: Repository<Location>,
   ) {}
 
   /** Logger instance scoped to LocationsService for tracking and recording service-level operations and errors. */
@@ -76,7 +77,6 @@ export class LocationsService {
       if (!result) {
         throw new NotFoundException();
       }
-      console.log(await this.cityRepo.findAll());
 
       if (result.cityId)
         city = await this.fetchRecordById('city', result.cityId);
